@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - NetScanner</title>
+    <link rel="stylesheet" href="login.css"> <!-- Using the same CSS file -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Header with logo -->
+    <header>
+        <h1 class="logo"><span class="green-text">NetScanner>_</span></h1> 
+        
+        <!-- Navigation Menu -->
+        <div class="nav-container">
+            <nav>
+                <a href="NetScanner.html">Home</a>
+                <a href="Scan.html">Scan</a>
+                <a href="#">AI Assistant</a>
+                <a href="login.html">Login</a>  <!-- Redirect to login page -->
+                <a href="#">User Guide</a>
+                <a href="About.html">About</a>
+            </nav>
+    
+            <!-- Settings Icon -->
+            <a href="#"><img src="Settings.png" alt="Settings" class="settings-icon"></a>
+        </div>
+    </header>
+
+    <!-- Signup Box Section -->
+    <div class="login-container">
+        <div class="login-box">
+            <h2 class="login-box-header">Create Account</h2>
+            
+            <!-- Signup Form -->
+            <form action="signup-processing.php" method="POST">
+                <div class="input-container">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
+                </div>
+
+                <button type="submit" class="login-submit">Signup</button>
+
+                <div class="links">
+                    <a href="login.html" class="create-account">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><img src="Twitter.png" alt="Twitter" class="social-img"></a>
+            <a href="#"><img src="Github.png" alt="GitHub" class="social-img"></a>
+            <a href="#"><img src="Linkedin.png" alt="LinkedIn" class="social-img"></a>
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Terms_of_Service.txt</a>
+            <a href="#">Privacy_Policy.txt</a>
+        </div>
+    </footer>
+
+</body>
+</html>
