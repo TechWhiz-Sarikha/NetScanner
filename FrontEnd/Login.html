@@ -4,38 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NetScanner</title>
-    <link rel="stylesheet" href="login.css"> <!-- Linked to the new CSS file -->
+    <link rel="stylesheet" href="login.css"> 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- Header with logo (same as index) -->
+    <!-- Header -->
     <header>
         <h1 class="logo"><span class="green-text">NetScanner>_</span></h1> 
-        
-        <!-- Navigation Menu -->
         <div class="nav-container">
             <nav>
                 <a href="NetScanner.html">Home</a>
                 <a href="Scan.html">Scan</a>
                 <a href="#">AI Assistant</a>
-                <a href="#">Login</a>  <!-- Login link to redirect to login page -->
+                <a href="#">Login</a>
                 <a href="#">User Guide</a>
                 <a href="About.html">About</a>
             </nav>
-    
-            <!-- Settings Icon -->
             <a href="#"><img src="Settings.png" alt="Settings" class="settings-icon"></a>
         </div>
     </header>
 
-    <!-- Login Box Section -->
+    <!-- Login Box -->
     <div class="login-container">
         <div class="login-box">
-            <h2 class="login-box-header">Login Terminal</h2>
-            
-            <!-- Login Form -->
-            <form action="login-processing.php" method="POST">
+            <h2 class="login-box-header">Login</h2>
+
+            <form id="login-form">
                 <div class="input-container">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -48,15 +43,49 @@
 
                 <button type="submit" class="login-submit">Login</button>
 
+                <div id="error-message" style="color: red; margin-top: 10px;"></div>
+
                 <div class="links">
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-                    <a href="signup.html" class="create-account">Create Account</a>
+                    <a href="signup.html" class="create-account">Don't have an account? Create one</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- Footer (updated with changes) -->
+    <script>
+        document.getElementById("login-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            errorMessage.textContent = ""; // Clear previous errors
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem("user", data.username); // Store username in localStorage
+                    alert("Login successful! Redirecting...");
+                    window.location.href = "Scan.html";  // Redirect to scanner page
+                } else {
+                    errorMessage.textContent = data.error; // Show error message
+                }
+            } catch (error) {
+                console.error("Login Error:", error);
+                errorMessage.textContent = "Server error. Please try again later.";
+            }
+        });
+    </script>
+
+    <!-- Footer -->
     <footer>
         <div class="social-icons">
             <a href="#"><img src="Twitter.png" alt="Twitter" class="social-img"></a>
@@ -68,7 +97,6 @@
             <a href="#">Terms_of_Service.txt</a>
             <a href="#">Privacy_Policy.txt</a>
         </div>
-
     </footer>
 
 </body>
